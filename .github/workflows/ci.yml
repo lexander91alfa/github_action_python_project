@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  executa linter:
+  executa_python_ci:
     runs-on: ubuntu-latest
     steps:
       - name: Iniciando processo
