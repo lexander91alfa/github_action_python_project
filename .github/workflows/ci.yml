@@ -9,7 +9,13 @@ jobs:
   executa linter:
     runs-on: ubuntu-latest
     steps:
-      - name: Not on Monday or Wednesday
-        if: github.event.schedule != '30 5 * * 1,3'
-        run: echo "This step will be skipped on Monday and Wednesday"
+      - name: Iniciando processo
+        run: echo "Iniciando processo de jobs"
 
+      - name: Checkout
+        uses: actions/checkout@v3
+       
+      - name: Instalando python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
