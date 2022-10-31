@@ -9,13 +9,25 @@ jobs:
   executa_python_ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Iniciando processo
-        run: echo "Iniciando processo de jobs"
-
-      - name: Checkout
-        uses: actions/checkout@v3
-       
+      -  uses: actions/checkout@v3
+      
       - name: Instalando python 3.11
         uses: actions/setup-python@v3
         with:
           python-version: 3.11
+
+      - name: Instalando requirements
+        working-directory: ./app
+        run: pip install -r requirements.txt
+
+      - name: formatando codigo com black
+        working-directory: ./app
+        run: black src/
+
+      - name: formatando codigo com isort
+        working-directory: ./app
+        run: isort src/
+
+      - name: testando app
+        working-directory: ./app
+        run: pytest -s -v
